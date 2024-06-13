@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #005358; */
+    background-image: url(image/download.jpeg);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  /* Container Styles */
+  #login_container, #home_container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 30%;
+    text-align: center;
+    display: none;
+    margin-top: 100px;
+    /* border: 5px solid black;
+    width: 100px;
+    height: 100px; */
+  }
+  
+  /* Input Styles */
+  input[type="email"], input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: -12px;
+  }
+  
+  /* Button Styles */
+  .btn {
+    width: 100%;
+    padding: 10px;
+    background: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  button:hover {
+    background: #4cae4c;
+  }
+  
+  /* To-do List Styles */
+  .btn1 {
+    padding: 10px;
+    background: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    margin-left: 30px;
+    /* padding: 5px; */
+    /* display: flex;
+    flex-direction: row; */
+  }
+  .btn2 {
+    padding: 10px;
+    background: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+   margin-left: 20px;
+  }
+  li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  /* #home_container{
+    margin-top: 10px;
+  } */
+
+
+
+
+
+
+  #qw{
+    color: aquamarine;
+    margin-top: -80px;
+  }

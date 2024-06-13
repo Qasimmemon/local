@@ -1,0 +1,239 @@
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="login_container">
+      <h1>Login Form</h1>
+      <input type="email" placeholder="Email" id="email" />
+      <input type="password" placeholder="Password" id="password" />
+      
+      <button onclick="loginUser()" class="btn">login</button>
+    </div>
+
+    <div id="home_container">
+      
+      <h1 id="qw">Home Page</h1><br>
+      <h1>Students/Notes save</h1>
+     
+      <h1>Welcome <span id="user_email"></span></h1>
+
+      <input type="text" name="" id="todo_input" placeholder="Add todo" />
+      <button onclick="addTodo()" class="btn">Add Todo</button>
+      <button onclick="logout()" class="btn">logout</button>
+
+      <ul id="list">
+        
+      </ul>
+    </div>
+  
+
+<script>
+  var login_container = document.getElementById("login_container");
+var home_container = document.getElementById("home_container");
+var email = document.getElementById("email");
+var user_email = document.getElementById("user_email");
+var password = document.getElementById("password");
+var todo_input = document.getElementById("todo_input");
+var Fullname = document.getElementById('Fullname')
+
+function checkIsUserLogin() {
+  var email = localStorage.getItem("email");
+  if (email) {
+    login_container.style.display = "none";
+    home_container.style.display = "block";
+    user_email.innerText = email;
+showTodos();
+
+  } else {
+    login_container.style.display = "block";
+    home_container.style.display = "none";
+  }
+}
+
+checkIsUserLogin();
+
+function loginUser() {
+  if (!email.value || !password.value) return alert("Please add all detaille");
+  localStorage.setItem("email", email.value);
+  localStorage.setItem("password", password.value);
+  checkIsUserLogin();
+
+  email.value = "";
+  password.value = "";
+}
+function logout() {
+  localStorage.removeItem("email");
+  checkIsUserLogin();
+}
+
+function addTodo() {
+  if (!todo_input.value?.trim()) return alert("Fill all instruction");
+
+  var email = localStorage.getItem("email");
+
+  var obj = {
+    email: email,
+    todo: todo_input.value.trim(),
+  };
+  var todos = localStorage.getItem("todos");
+  console.log("Local Storage se get kye=>", todos);
+  if (todos) {
+    todos = JSON.parse(todos);
+    todos.push(obj);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  } else {
+    todos = [obj];
+    console.log("Todos null ho to naya banado=>", todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+  showTodos();
+}
+
+function showTodos() {
+  var todos = localStorage.getItem("todos");
+  var list = document.getElementById("list");
+  var email = localStorage.getItem("email");
+  if (todos) {
+    todos = JSON.parse(todos);
+    list.innerHTML = "";
+    todos.forEach(function (data, index) {
+      if (data.email === email) {
+        var li = `<li>${data.todo} <button class="btn1" onclick="del(li)">Delete</button><button  <button class="btn2" onclick="edit(li)">Edit</button></li>`;
+        list.innerHTML += li;
+      }
+    });
+  }
+}
+showTodos();
+// function del(li) {
+//   li.style.display = 'none';
+// }
+
+function del(button) {
+            var li = button.parentElement;
+            li.parentElement.removeChild(li);
+        }
+
+// var s = 12
+// console.log(typeof s);
+</script>
+  </body>
+</html>
+-->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login_container">
+        <h1>Login Form</h1>
+        <input type="email" placeholder="Email" id="email" />
+        <input type="password" placeholder="Password" id="password" />
+       
+        <button onclick="loginUser()" class="btn">Login</button>
+    </div>
+
+    <div id="home_container">
+        <h1 id="qw">Home Page</h1><br>
+        <h1>Students/Notes Save</h1>
+        <h1>Welcome <span id="user_email"></span></h1>
+        <input type="text" id="todo_input" placeholder="Add todo" />
+        <button onclick="addTodo()" class="btn">Add Todo</button>
+        <button onclick="logout()" class="btn">Logout</button>
+        <ul id="list"></ul>
+    </div>
+
+    <script>
+        var login_container = document.getElementById("login_container");
+        var home_container = document.getElementById("home_container");
+        var email = document.getElementById("email");
+        var user_email = document.getElementById("user_email");
+        var password = document.getElementById("password");
+        var todo_input = document.getElementById("todo_input");
+
+        function checkIsUserLogin() {
+            var email = localStorage.getItem("email");
+            if (email) {
+                login_container.style.display = "none";
+                home_container.style.display = "block";
+                user_email.innerText = email;
+                showTodos();
+            } else {
+                login_container.style.display = "block";
+                home_container.style.display = "none";
+            }
+        }
+
+        checkIsUserLogin();
+
+        function loginUser() {
+            if (!email.value || !password.value) return alert("Please add all details");
+            localStorage.setItem("email", email.value);
+            localStorage.setItem("password", password.value);
+            checkIsUserLogin();
+            email.value = "";
+            password.value = "";
+        }
+
+        function logout() {
+            localStorage.removeItem("email");
+            checkIsUserLogin();
+        }
+
+        function addTodo() {
+            if (!todo_input.value.trim()) return alert("Fill all instructions");
+            var email = localStorage.getItem("email");
+            var obj = {
+                email: email,
+                todo: todo_input.value.trim()
+            };
+            var todos = localStorage.getItem("todos");
+            if (todos) {
+                todos = JSON.parse(todos);
+                todos.push(obj);
+                localStorage.setItem("todos", JSON.stringify(todos));
+            } else {
+                todos = [obj];
+                localStorage.setItem("todos", JSON.stringify(todos));
+            }
+            showTodos();
+        }
+
+        function showTodos() {
+            var todos = localStorage.getItem("todos");
+            var list = document.getElementById("list");
+            var email = localStorage.getItem("email");
+            if (todos) {
+                todos = JSON.parse(todos);
+                list.innerHTML = "";
+                todos.forEach(function (data) {
+                    if (data.email === email) {
+                        var li = document.createElement("li");
+                        li.innerHTML = `${data.todo} <button class="btn1" onclick="del(this)">Delete</button>`;
+                        list.appendChild(li);
+                    }
+                });
+            }
+        }
+
+        function del(button) {
+            var li = button.parentElement;
+            li.parentElement.removeChild(li);
+        }
+
+        showTodos();
+    </script>
+</body>
+</html>
